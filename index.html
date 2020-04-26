@@ -20,7 +20,7 @@
         crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body class="bg">
     <div class="container">
         <!-- whole thing fits inside here -->
         <div class="row">
@@ -28,9 +28,9 @@
                 <div class="card text-white bg-warning mb-3">
                     <div class="card-body" id="title-card">
                         <!-- THIS IS THE TITLE. -->
-                        <h4>TITLE</h4>
+                        <h4>TOP RATED IMDB MOVIES TRIVIA</h4>
                         <br><br>
-                        <span></span>
+                        <button type="button" class="btn btn-danger" id="start">start</button>
                     </div>
                 </div>
             </div>
@@ -40,8 +40,8 @@
                 <div class="card border-primary mb-3">
                     <div class="card-body" id="title-card">
                         <!-- this is where the time sits -->
-                        <h4><span>Time Remaining: <br><br>
-                            </span><span id='timer'></span></h4>
+                        <h6><span>Time Remaining: <br><br>
+                            </span><span id='timer'></span></h6>
                     </div>
                 </div>
             </div>
@@ -79,9 +79,17 @@
             </div>
         </div>
         <button id="next" onclick="nextques();">NEXT QUESTION</button>
-        <div id="result" style="display:none"></div>
-        <!-- need to figure how to display the score at the end -->
-        <!-- reset button, restart anytime -->
+        <div class="card" id="result">
+            <div class="card-body">
+                <h5 class="card-title">Score Leaders</h5>
+                <ol class="list-group" id="scoreBoard">
+
+                    <li class="list-group-item"></li>
+
+                </ol>
+            </div>
+        </div>
+
     </div>
 
 

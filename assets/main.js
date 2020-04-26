@@ -20,14 +20,20 @@ var opt3 = document.getElementById("option3");
 var opt4 = document.getElementById("option4");
 var opt5 = document.getElementById("option5");
 var res = document.getElementById("result");
+var scoreText = document.getElementById("scoreBoard");
 var nextbutton = document.getElementById("next");
-// var q = document.getElementById('quit');
 var timerEl = document.getElementById("timer");
+
 var timeLEFT = 360;
 
 var totalQuestions = questions.length;
 var score = 0;
+var scoreText = document.getElementById("scoreBoard");
 var index = 0;
+$("#start").on("click", function () {
+    startTimer();
+    firstQuestion(0);
+});
 
 function startTimer() {
     // TIMER BEGINS HERE AND IS NESTED IN THE CORNER
@@ -40,7 +46,7 @@ function setTimer() {
     var countdown = setInterval(function () {
         timeLEFT--;
         timerEl.textContent = " " + timeLEFT + " seconds's";
-
+        var secondsLeft = timeLEFT;
         if (secondsLeft === 0) {
             clearInterval(countdown);
 
@@ -50,7 +56,7 @@ function setTimer() {
 
 }
 
-startTimer();
+
 
 // ________________________________________________________________________
 // PLAY THE GAME BELOW
@@ -65,19 +71,19 @@ function firstQuestion(index) {
     return;
 };
 
-firstQuestion(0);
-
 
 function nextques() {
     var selected_answer = document.querySelector('input[type=radio]:checked');
     if (!selected_answer) { alert("SELECT AN OPTION"); return; }
 
-    if (selected_answer.value == questions[index][4]) { score = score + 1; }
-    // need to figure what index is on the right oe to count the score up
+    if (selected_answer.value == questions[index][4]) { score = score++; }
+    // score wont increment
     selected_answer.checked = false;
     index++;
     if (index == totalQuestions - 1) {
         nextbutton.textContent = "Finish";
+        $("#next").on("click", function () {
+        });
         nextbutton.onclick = function () {
             function resetGame() {
                 i = 0;
@@ -98,5 +104,19 @@ function nextques() {
 
 }
 // ____________________________________
+// score board
 
-console.log(score)
+
+
+function scoreHigh() {
+    scoreText.innerHTML = "<p> You scored " + score + " out of 10!</p>";
+    highScore();
+}
+
+function highScore() {
+    var scoreList = $("#scoreBoard");
+    var AAA = prompt("Enter Initials: ").toUpperCase() + "  " + score;
+    console.log(AAA);
+    scoreList.append("<li>" + AAA + "<li>");
+
+}

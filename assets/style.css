@@ -9,3 +9,18 @@ float: right;
     border-color: blue;
 }
 
+h4 {
+    text-align: center;
+}
+
+body, html {
+    height: 100%;
+
+   background-image: url("https://www.nederlanderconcerts.com/assets/img/Orpheum-Theatre.jpg");
+    height: 100%;
+  
+    /* /* Center and scale the image */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
