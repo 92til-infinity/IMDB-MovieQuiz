@@ -51,6 +51,7 @@ function setTimer() {
             clearInterval(countdown);
 
             alert("QUIZ IS OVER");
+            highScore();
         }
     }, 1000);
 
@@ -82,36 +83,28 @@ function nextques() {
     index++;
     if (index == totalQuestions - 1) {
         nextbutton.textContent = "Finish";
-        $("#next").on("click", function () {
+
+        nextbutton.on("click", function () {
+            highScore();
         });
-        nextbutton.onclick = function () {
-            function resetGame() {
-                i = 0;
-                nextques(0);
-            }
-        }
-
-        var f = score / totalQuestions;
-        if (index == totalQuestions) {
-
-            quiz.style.display = 'none';
-            result.style.display = '';
-            result.textContent = "SCORED:" + score;
-            return;
-        }
     }
-    firstQuestion(index);
+
+    var f = score / totalQuestions;
+    if (index == totalQuestions) {
+
+        quiz.style.display = 'none';
+        result.style.display = '';
+        result.textContent = "SCORED:" + score;
+        return;
+    }
+}
+firstQuestion(index);
 
 }
 // ____________________________________
 // score board
 
 
-
-function scoreHigh() {
-    scoreText.innerHTML = "<p> You scored " + score + " out of 10!</p>";
-    highScore();
-}
 
 function highScore() {
     var scoreList = $("#scoreBoard");
