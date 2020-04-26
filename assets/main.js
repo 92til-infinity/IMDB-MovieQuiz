@@ -51,12 +51,10 @@ function setTimer() {
             clearInterval(countdown);
 
             alert("QUIZ IS OVER");
-            highScore();
         }
     }, 1000);
 
 }
-
 
 
 // ________________________________________________________________________
@@ -86,7 +84,7 @@ function nextques() {
 
         nextbutton.on("click", function () {
             highScore();
-        });
+        };
     }
 
     var f = score / totalQuestions;
@@ -95,10 +93,10 @@ function nextques() {
         quiz.style.display = 'none';
         result.style.display = '';
         result.textContent = "SCORED:" + score;
-        return;
+
     }
-}
-firstQuestion(index);
+
+    firstQuestion(index);
 
 }
 // ____________________________________
