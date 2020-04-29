@@ -30,7 +30,12 @@ var totalQuestions = questions.length;
 var score = 0;
 var scoreText = document.getElementById("scoreBoard");
 var index = 0;
-$("#start").on("click", function () {
+var start = document.getElementById("start")
+
+// ------------------------------------------------------------------
+// ------------------------------------------------------------------
+
+$(start).on("click", function () {
     startTimer();
     firstQuestion(0);
 });
@@ -49,12 +54,13 @@ function setTimer() {
         var secondsLeft = timeLEFT;
         if (secondsLeft === 0) {
             clearInterval(countdown);
-
             alert("QUIZ IS OVER");
         }
     }, 1000);
 
 }
+
+
 
 
 // ________________________________________________________________________
@@ -74,18 +80,24 @@ function firstQuestion(index) {
 function nextques() {
     var selected_answer = document.querySelector('input[type=radio]:checked');
     if (!selected_answer) { alert("SELECT AN OPTION"); return; }
+    console.log(selected_answer.value);
+    if (questions[selected_answer.value] == questions[3]) { score = score++; }
 
-    if (selected_answer.value == questions[index][4]) { score = score++; }
-    // score wont increment
+
     selected_answer.checked = false;
     index++;
-    if (index == totalQuestions - 1) {
-        nextbutton.textContent = "Finish";
+    firstQuestion(index);
 
+    if ((index == totalQuestions - 1) || (timeLEFT == 0)) {
+        nextbutton.textContent = "Finish";
         nextbutton.on("click", function () {
             highScore();
-        };
-    }
+            console.log("*");
+        }
+        )
+    };
+
+
 
     var f = score / totalQuestions;
     if (index == totalQuestions) {
@@ -96,9 +108,8 @@ function nextques() {
 
     }
 
-    firstQuestion(index);
-
 }
+
 // ____________________________________
 // score board
 
