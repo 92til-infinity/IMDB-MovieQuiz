@@ -65,6 +65,7 @@ function setTimer() {
 
 // ________________________________________________________________________
 // PLAY THE GAME BELOW
+// firstQuestion begins at index1 due to index0 being the scripted questions in each set
 // ______________________________________________
 function firstQuestion(index) {
     ques.textContent = index + 1 + ". " + questions[index][0];
@@ -76,36 +77,33 @@ function firstQuestion(index) {
     return;
 };
 
-
+// iterates through each question until the final index and allows for a prompt of your intials
 function nextques() {
     var selected_answer = document.querySelector('input[type=radio]:checked');
     if (!selected_answer) { alert("SELECT AN OPTION"); return; }
     console.log(selected_answer.value);
-    if (questions[selected_answer.value] == questions[3]) { score = score++; }
-
-
+    if (questions[selected_answer.value] == questions[3]) { score++; }
+    if (questions[selected_answer.value] !== questions[3]) { timeLEFT = timeLEFT - 45; }
     selected_answer.checked = false;
-    index++;
-    firstQuestion(index);
+
+
 
     if ((index == totalQuestions - 1) || (timeLEFT == 0)) {
         nextbutton.textContent = "Finish";
-        nextbutton.on("click", function () {
-            highScore();
-            console.log("*");
-        }
-        )
+        console.log("*");
+
+
     };
 
 
 
-    var f = score / totalQuestions;
-    if (index == totalQuestions) {
+    if (index == totalQuestions - 1) {
+        highScore();
+    }
 
-        quiz.style.display = 'none';
-        result.style.display = '';
-        result.textContent = "SCORED:" + score;
-
+    else {
+        index++;
+        firstQuestion(index);
     }
 
 }
@@ -117,7 +115,7 @@ function nextques() {
 
 function highScore() {
     var scoreList = $("#scoreBoard");
-    var AAA = prompt("Enter Initials: ").toUpperCase() + "  " + score;
+    var AAA = prompt("Enter Initials: ").toUpperCase() + ": " + score;
     console.log(AAA);
     scoreList.append("<li>" + AAA + "<li>");
 
